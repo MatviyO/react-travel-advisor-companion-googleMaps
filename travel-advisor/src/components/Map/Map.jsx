@@ -5,6 +5,7 @@ import LocationOnOutlinedIcon from '@material-ui/icons/LocationOnOutlined';
 import useStyles from './style';
 import {useMediaQuery} from "@material-ui/core";
 
+
 const Map = () => {
     const classes = useStyles()
     const isMobile = useMediaQuery('(min-width: 600px)')
