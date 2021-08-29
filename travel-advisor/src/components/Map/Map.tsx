@@ -8,19 +8,19 @@ import {useMediaQuery} from "@material-ui/core";
 
 const Map = () => {
     const classes = useStyles()
-    const isMobile = useMediaQuery('(min-width: 600px)')
+    const isMobile = useMediaQuery('(mi n-width: 600px)')
     const coordinates = {lat: 0, lng: 0}
     return (
         <div className={classes.mapContainer}>
             <GoogleMapReact
-                bootstrapURLKeys={{key: 'AIzaSyAhEqwDYyJ0jEtIFYo6aeL3jrdlQD8oSM4&callback'}}
+                bootstrapURLKeys={{key: 'AIzaSyB2Qsx7uktebp44R3IEM25hb08NnHybvHI'}}
                 defaultCenter={coordinates}
                 center={coordinates}
                 defaultZoom={14}
                 margin={[50,50,50,50]}
-                options={''}
-                onChange={''}
-                onChildClick={''}
+                // options={''}
+                // onChange={''}
+                // onChildClick={''}
             >
 
             </GoogleMapReact>
