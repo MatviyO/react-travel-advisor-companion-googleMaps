@@ -12,6 +12,7 @@ const List = () =>  {
         { name: 'Best Beer'},
         { name: 'Steak'}
     ]
+
     return (
         <div className={classes.container}>
             <Typography variant="h4">Restaurants, Hotels, Attractions around you</Typography>
