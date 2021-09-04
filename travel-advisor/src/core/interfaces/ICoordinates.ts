@@ -4,6 +4,6 @@ export interface ICoordinates {
 }
 
 export interface IBooundCoord {
-    ne: number;
-    sw: number;
+    ne: ICoordinates;
+    sw: ICoordinates;
 }
