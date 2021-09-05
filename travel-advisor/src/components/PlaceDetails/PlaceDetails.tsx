@@ -1,4 +1,7 @@
 import React, {FC} from 'react';
+import LocationOnIcon from '@material-ui/icons/LocationOn';
+import PhoneIcon from '@material-ui/icons/Phone';
+import Rating from '@material-ui/lab/Rating';
 
 interface Props {
     place: { name: string}
