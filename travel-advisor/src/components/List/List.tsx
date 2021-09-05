@@ -1,17 +1,15 @@
-import React, {useState} from 'react';
+import React, {FC, useState} from 'react';
 import useStyles from './style'
 import {FormControl, Typography, InputLabel, Select, MenuItem, Grid, Card} from "@material-ui/core";
 import PlaceDetails from "../PlaceDetails/PlaceDetails";
 
-const List = () =>  {
+interface Props {
+    places: Array<any>
+}
+const List: FC<Props> = ({places}) =>  {
     const classes = useStyles()
     const [type, setType] = useState<string>("restaurants")
     const [rating, setRating] = useState<string>("restaurants")
-    const places = [
-        { name: 'Cool Place'},
-        { name: 'Best Beer'},
-        { name: 'Steak'}
-    ]
 
     return (
         <div className={classes.container}>
