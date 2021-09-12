@@ -3,10 +3,10 @@ import LocationOnIcon from '@material-ui/icons/LocationOn';
 import PhoneIcon from '@material-ui/icons/Phone';
 import Rating from '@material-ui/lab/Rating';
 import useStyles from './style';
-import {Box, Card, CardContent, CardMedia, Typography} from "@material-ui/core";
+import {Box, Button, Card, CardActions, CardContent, CardMedia, Chip, Typography} from "@material-ui/core";
 
 interface Props {
-    place: { name: string, photo: any, price_level: string, ranking: string, awards: any}
+    place: { name: string, photo: any, price_level: string, ranking: string, awards: any, cuisine: any, address: any, phone: string, web_url: string, website: string}
 }
 
 const PlaceDetails: FC<Props> = ({place}) =>  {
@@ -34,6 +34,28 @@ const PlaceDetails: FC<Props> = ({place}) =>  {
                         <Typography variant="subtitle2" color="textSecondary">{award.display_name}</Typography>
                     </Box>
                 ))}
+
+                {place?.cuisine?.map(({name}: any) => (
+                   <Chip key={name} label={name} size="small" className={classes.chip} />
+                ))}
+
+                {place?.address && (
+                    <Typography gutterBottom variant={"subtitle2"} color={"textSecondary"} className={classes.subtitle} >
+                        <LocationOnIcon/> {place.address}
+                    </Typography>
+
+                )}
+
+                {place?.phone && (
+                    <Typography gutterBottom variant={"subtitle2"} color={"textSecondary"} className={classes.spacing} >
+                        <PhoneIcon/> {place.phone}
+                    </Typography>
+
+                )}
+                <CardActions>
+                    <Button size="small" color="primary" onClick={() => window.open(place.web_url, '_blank')}>Trip Advisor</Button>
+                    <Button size="small" color="primary" onClick={() => window.open(place.website, '_blank')}>Website</Button>
+                </CardActions>
             </CardContent>
         </Card>
     )

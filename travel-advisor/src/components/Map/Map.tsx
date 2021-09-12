@@ -10,9 +10,10 @@ interface Props {
     coordinates: ICoordinates;
     setCoordinates: (data: any) => void
     setBounds: (data: any) => void
+    places: any
 }
 
-const Map: FC<Props> = ({setCoordinates, setBounds, coordinates}) => {
+const Map: FC<Props> = ({setCoordinates, setBounds, coordinates,places}) => {
     const classes = useStyles()
     const isMobile = useMediaQuery('(mi n-width: 600px)')
 
