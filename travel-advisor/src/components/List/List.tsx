@@ -29,11 +29,10 @@ const List: FC<Props> = ({places}) =>  {
                     <MenuItem value={3}>Above 3.0</MenuItem>
                     <MenuItem value={4}>Above 4.0</MenuItem>
                     <MenuItem value={4.5}>Above 4.5</MenuItem>
-
                 </Select>
             </FormControl>
             <Grid container spacing={3} className={classes.list}>
-                {places?.map((place, index) => (
+                {places && places?.map((place, index) => (
                     <Grid item key={index} xs={12}>
                         <PlaceDetails place={place}/>
                     </Grid>

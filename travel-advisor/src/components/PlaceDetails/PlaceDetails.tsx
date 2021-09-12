@@ -6,7 +6,7 @@ import useStyles from './style';
 import {Box, Card, CardContent, CardMedia, Typography} from "@material-ui/core";
 
 interface Props {
-    place: { name: string, photo: any}
+    place: { name: string, photo: any, price_level: string, ranking: string, awards: any}
 }
 
 const PlaceDetails: FC<Props> = ({place}) =>  {
@@ -21,7 +21,19 @@ const PlaceDetails: FC<Props> = ({place}) =>  {
                 <Typography gutterBottom variant="h5">{place.name}</Typography>
                 <Box display="flex" justifyContent="space-between">
                     <Typography  variant="subtitle1">Price</Typography>
+                    <Typography gutterBottom variant="subtitle1">{place.price_level}</Typography>
                 </Box>
+
+                <Box display="flex" justifyContent="space-between">
+                    <Typography  variant="subtitle1">Ranking</Typography>
+                    <Typography gutterBottom variant="subtitle1">{place.ranking}</Typography>
+                </Box>
+                {place?.awards?.map((award: any) => (
+                    <Box my={1} display="flex" justifyContent="space-between" alignItems="center">
+                        <img src={award.images.small} alt={award.display_name}/>
+                        <Typography variant="subtitle2" color="textSecondary">{award.display_name}</Typography>
+                    </Box>
+                ))}
             </CardContent>
         </Card>
     )
