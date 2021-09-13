@@ -6,7 +6,7 @@ import useStyles from './style';
 import {Box, Button, Card, CardActions, CardContent, CardMedia, Chip, Typography} from "@material-ui/core";
 
 interface Props {
-    place: { name: string, photo: any, price_level: string, ranking: string, awards: any, cuisine: any, address: any, phone: string, web_url: string, website: string}
+    place: { name: string, photo: any, price_level: string, ranking: string, awards: any, cuisine: any, address: any, phone: string, web_url: string, website: string, rating: any, num_reviews: any}
 }
 
 const PlaceDetails: FC<Props> = ({place}) =>  {
@@ -19,6 +19,11 @@ const PlaceDetails: FC<Props> = ({place}) =>  {
             />
             <CardContent>
                 <Typography gutterBottom variant="h5">{place.name}</Typography>
+
+                <Box display="flex" justifyContent="space-between">
+                    <Rating size="small" value={Number(place.rating)} readOnly />
+                    <Typography gutterBottom variant="subtitle1">out of {place.num_reviews}</Typography>
+                </Box>
                 <Box display="flex" justifyContent="space-between">
                     <Typography  variant="subtitle1">Price</Typography>
                     <Typography gutterBottom variant="subtitle1">{place.price_level}</Typography>
