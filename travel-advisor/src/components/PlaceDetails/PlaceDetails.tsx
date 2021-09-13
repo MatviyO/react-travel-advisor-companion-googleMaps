@@ -6,13 +6,17 @@ import useStyles from './style';
 import {Box, Button, Card, CardActions, CardContent, CardMedia, Chip, Typography} from "@material-ui/core";
 
 interface Props {
+    refProp: any
+    selected: any
     place: { name: string, photo: any, price_level: string, ranking: string, awards: any, cuisine: any, address: any, phone: string, web_url: string, website: string, rating: any, num_reviews: any}
 }
 
-const PlaceDetails: FC<Props> = ({place}) =>  {
+const PlaceDetails: FC<Props> = ({place, selected, refProp}) =>  {
     const classes = useStyles()
+
+    if(selected) refProp?.current?.scrollIntoView({behavior: 'smooth', block: 'start'})
     return (
-        <Card elevation={6} >
+        <Card elevation={6} ref={refProp} >
             <CardMedia
                 title={place.name}
                 style={{height: 350}} image={place.photo ? place.photo.images.large.url : 'https://www.foodserviceandhospitality.com/wp-content/uploads/2016/09/Restaurant-Placeholder-001.jpg'}
