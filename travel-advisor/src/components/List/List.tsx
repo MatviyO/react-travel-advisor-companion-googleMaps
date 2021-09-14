@@ -7,11 +7,14 @@ interface Props {
     places: Array<any>
     childCLicked: any
     isLoading: boolean
+    type: any
+    setType: any
+    rating: any
+    setRating: any
 }
-const List: FC<Props> = ({places, childCLicked, isLoading}) =>  {
+const List: FC<Props> = ({places, childCLicked, isLoading, type, setType, rating, setRating}) =>  {
     const classes = useStyles()
-    const [type, setType] = useState<string>("restaurants")
-    const [rating, setRating] = useState<string>("restaurants")
+
     const [elRefs, setElRefs] = useState<any>([]);
 
     useEffect(() => {
