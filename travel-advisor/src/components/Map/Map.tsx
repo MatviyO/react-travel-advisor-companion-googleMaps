@@ -12,12 +12,12 @@ interface Props {
     setBounds: (data: any) => void
     places: any
     setChildClicked: any
+    weatherData: any
 }
 
-const Map: FC<Props> = ({setCoordinates, setBounds, coordinates, places, setChildClicked}) => {
+const Map: FC<Props> = ({setCoordinates, setBounds, coordinates, places, setChildClicked, weatherData}) => {
     const classes = useStyles()
     const matches  = useMediaQuery('(min-width: 600px)')
-
 
     return (
         <div className={classes.mapContainer}>
@@ -34,23 +34,30 @@ const Map: FC<Props> = ({setCoordinates, setBounds, coordinates, places, setChil
                 }}
                 onChildClick={(child) => {setChildClicked(child)}}
             >
-                {places?.map((place: any, i: React.Key) => (
-                    //@ts-ignore
-                    <div className={classes.markerContainer} lat={Number(place.latitude)} lng={Number(place.longitude)}
-                         key={i}>
-                        { !matches ? (
-                            <LocationOnOutlinedIcon color="primary" fontSize="large"/>
-                        ) : (
-                            <Paper elevation={3} className={classes.paper}>
-                                <Typography  variant="subtitle2" gutterBottom>
-                                    {place.name}
-                                </Typography>
-                                <img src={ place.photo ? place.photo.images.large.url : 'https://www.foodserviceandhospitality.com/wp-content/uploads/2016/09/Restaurant-Placeholder-001.jpg'}
-                                     className={classes.pointer} alt={place.name}/>
-                                <Rating size="small" value={Number(place.rating)} readOnly />
-                            </Paper>
-                        )}
+                {/*{places?.map((place: any, i: React.Key) => (*/}
+                {/*    //@ts-ignore*/}
+                {/*    <div className={classes.markerContainer} lat={Number(place.latitude)} lng={Number(place.longitude)}*/}
+                {/*         key={i}>*/}
+                {/*        { !matches ? (*/}
+                {/*            <LocationOnOutlinedIcon color="primary" fontSize="large"/>*/}
+                {/*        ) : (*/}
+                {/*            <Paper elevation={3} className={classes.paper}>*/}
+                {/*                <Typography  variant="subtitle2" gutterBottom>*/}
+                {/*                    {place.name}*/}
+                {/*                </Typography>*/}
+                {/*                <img src={ place.photo ? place.photo.images.large.url : 'https://www.foodserviceandhospitality.com/wp-content/uploads/2016/09/Restaurant-Placeholder-001.jpg'}*/}
+                {/*                     className={classes.pointer} alt={place.name}/>*/}
+                {/*                <Rating size="small" value={Number(place.rating)} readOnly />*/}
+                {/*            </Paper>*/}
+                {/*        )}*/}
 
+                {/*    </div>*/}
+                {/*))}*/}
+
+                {weatherData?.list?.map((data: any, i: number) => (
+                    // @ts-ignore
+                    <div className={classes.markerContainer} key={i} lat={data.coord.lat} lng={data.coord.lon}>
+                        <img src={`https://www.foodserviceandhospitality.com/wp-content/uploads/2016/09/Restaurant-Placeholder-001.jpg`} height="70px"  className={classes.pointer}/>
                     </div>
                 ))}
 

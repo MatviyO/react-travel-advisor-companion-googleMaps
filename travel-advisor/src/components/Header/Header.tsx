@@ -15,8 +15,8 @@ const Header: FC<Props> = ({setCoordinates}) => {
     }
 
     const onPlaceChanged = () => {
-        const lat = autocomplete.getPlace().getometry.location.lat()
-        const lng = autocomplete.getPlace().getometry.location.lng()
+        const lat = autocomplete.getPlace().geometry.location.lat();
+        const lng = autocomplete.getPlace().geometry.location.lng();
         setCoordinates({lat, lng})
     }
 
