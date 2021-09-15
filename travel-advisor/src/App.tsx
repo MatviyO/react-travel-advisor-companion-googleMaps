@@ -18,6 +18,7 @@ const App = () => {
     const [ weatherData ,setWeatherData] = useState([])
 
     useEffect(() => {
+        console.log(process.env.REACT_APP_GOOGLE_MAP_KEY)
         navigator.geolocation.getCurrentPosition(({coords: {latitude, longitude}}) => {
             setCoordinates({lat: latitude, lng: longitude})
         })
