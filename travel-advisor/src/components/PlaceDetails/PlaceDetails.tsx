@@ -4,11 +4,12 @@ import PhoneIcon from '@material-ui/icons/Phone';
 import Rating from '@material-ui/lab/Rating';
 import useStyles from './style';
 import {Box, Button, Card, CardActions, CardContent, CardMedia, Chip, Typography} from "@material-ui/core";
+import {IPlace} from "../../core/interfaces/IPlace";
 
 interface Props {
     refProp: any
-    selected: any
-    place: { name: string, photo: any, price_level: string, ranking: string, awards: any, cuisine: any, address: any, phone: string, web_url: string, website: string, rating: any, num_reviews: any}
+    selected: boolean
+    place: IPlace
 }
 
 const PlaceDetails: FC<Props> = ({place, selected, refProp}) =>  {

@@ -3,21 +3,24 @@ import GoogleMapReact from 'google-map-react';
 import LocationOnOutlinedIcon from '@material-ui/icons/LocationOnOutlined';
 import useStyles from './style';
 import {Paper, Typography, useMediaQuery} from "@material-ui/core";
-import {ICoordinates} from "../../core/interfaces/ICoordinates";
+import {IBooundCoord, ICoordinates} from "../../core/interfaces/ICoordinates";
 import {Rating} from "@material-ui/lab";
+import {IPlace} from "../../core/interfaces/IPlace";
+import {IWeather} from "../../core/interfaces/IWeather";
 
 interface Props {
     coordinates: ICoordinates;
-    setCoordinates: (data: any) => void
-    setBounds: (data: any) => void
-    places: any
-    setChildClicked: any
-    weatherData: any
+    setCoordinates: (data: ICoordinates) => void
+    setBounds: (data: IBooundCoord) => void
+    places: IPlace[]
+    setChildClicked: (data: any) => void
+    weatherData: IWeather
 }
 
 const Map: FC<Props> = ({setCoordinates, setBounds, coordinates, places, setChildClicked, weatherData}) => {
     const classes = useStyles()
     const matches  = useMediaQuery('(min-width: 600px)')
+    console.log(weatherData)
 
     return (
         <div className={classes.mapContainer}>
@@ -36,7 +39,7 @@ const Map: FC<Props> = ({setCoordinates, setBounds, coordinates, places, setChil
                 }}
                 onChildClick={(child) => {setChildClicked(child)}}
             >
-                {places?.map((place: any, i: React.Key) => (
+                {places?.map((place: IPlace, i: React.Key) => (
                     //@ts-ignore
                     <div className={classes.markerContainer} lat={Number(place.latitude)} lng={Number(place.longitude)}
                          key={i}>
@@ -56,10 +59,10 @@ const Map: FC<Props> = ({setCoordinates, setBounds, coordinates, places, setChil
                     </div>
                 ))}
 
-                {weatherData?.list?.length && weatherData.list.map((data: any, i: number) => (
+                {weatherData?.weather?.map((data: {[key: string]: any}, i: number) => (
                     //@ts-ignore
-                    <div key={i} lat={data.coord.lat} lng={data.coord.lon}>
-                        <img src={`http://openweathermap.org/img/w/${data.weather[0].icon}.png`} height="70px" />
+                    <div key={i} lat={weatherData.coord.lat} lng={weatherData.coord.lon} style={{marginLeft: 60}}>
+                        <img src={`https://openweathermap.org/img/w/${data?.icon}.png`} height="120px" />
                     </div>
                 ))}
 

@@ -4,7 +4,7 @@ import {Autocomplete} from "@react-google-maps/api";
 import SearchIcon from "@material-ui/icons/Search";
 import useStyles from './style'
 interface Props {
-    setCoordinates: any
+    setCoordinates: (data: any) => void
 }
 const Header: FC<Props> = ({setCoordinates}) => {
     const classes = useStyles()

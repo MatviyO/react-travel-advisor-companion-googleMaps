@@ -5,29 +5,29 @@ import List from "./components/List/List";
 import Map from "./components/Map/Map";
 import {getPlacesData, getWeatherData} from "./api";
 import {IBooundCoord, ICoordinates} from "./core/interfaces/ICoordinates";
+import {IPlace} from "./core/interfaces/IPlace";
+import {IWeather} from "./core/interfaces/IWeather";
 
 const App = () => {
-    const [places, setPlaces] = useState([]);
-    const [filteredPlaces, setFilteredPlaces] = useState([])
+    const [places, setPlaces] = useState<IPlace[]>([]);
+    const [filteredPlaces, setFilteredPlaces] = useState<IPlace[]>([])
     const [coordinates, setCoordinates] = useState<ICoordinates>({lat: 0, lng: 0} as ICoordinates)
     const [bounds, setBounds] = useState<IBooundCoord>({} as IBooundCoord);
     const [childCLicked, setChildClicked] = useState(null);
     const [isLoading, setIsLoading] = useState<boolean>(false)
     const [type, setType] = useState<string>("restaurants")
-    const [rating, setRating] = useState<string>("restaurants")
-    const [ weatherData ,setWeatherData] = useState([])
+    const [rating, setRating] = useState<number>(0)
+    const [ weatherData ,setWeatherData] = useState<IWeather>({} as IWeather)
 
     useEffect(() => {
-        console.log(process.env.REACT_APP_GOOGLE_MAP_KEY)
         navigator.geolocation.getCurrentPosition(({coords: {latitude, longitude}}) => {
             setCoordinates({lat: latitude, lng: longitude})
         })
     }, [])
 
     useEffect(() => {
-        const filteredPlaces = places.filter((place: any) => place.rating > rating)
+        const filteredPlaces = places.filter((place: IPlace) => Number(place.rating) > Number(rating))
         filteredPlaces?.length && setFilteredPlaces(filteredPlaces)
-
     }, [rating])
 
     useEffect(() => {
